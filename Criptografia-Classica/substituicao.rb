@@ -6,7 +6,7 @@ def enumerate(lista_embaralhada)
 end
 
 if ARGV[1]
-	t =  File.open("keys/#{ARGV[1]}",'rb')
+	t =  File.open("#{ARGV[1]}",'rb')
 	n_emb = []
 	t.each_char{|k| n_emb << (k.chr).ord }
 	cifras = enumerate(n_emb)
