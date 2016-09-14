@@ -1,42 +1,37 @@
-cifras = {
-    'A' => 'Q',
-    'B' => 'W',
-    'C' => 'E',
-    'D' => 'R',
-    'E' => 'C',
-    'F' => 'Y',
-    'G' => 'U',
-    'H' => 'I',
-    'I' => 'H',
-    'J' => 'P',
-    'K' => 'Z',
-    'L' => 'X',
-    'M' => 'S',
-    'N' => 'T',
-    'O' => 'V',
-    'P' => 'J',
-    'Q' => 'A',
-    'R' => 'D',
-    'S' => 'M',
-    'T' => 'N',
-    'U' => 'G',
-    'V' => 'O',
-    'W' => 'B',
-    'X' => 'L',
-    'Y' => 'F',
-    'Z' => 'K'
-}
+#mensagem =  "ATACARBASESUL"
+mensagem = File.open("#{ARGV[0]}",'rb')
 
-mensagem = "ATACARBASESUL"
+def enumerate(lista_embaralhada)
+	lista_embaralhada.map.with_index {|x, i| [i, x] } # Faz uma associação a lista de numeros embaralhados com numeros de 0 a 255
+end
+
+if ARGV[1]
+	t =  File.open("keys/#{ARGV[1]}",'rb')
+	n_emb = []
+	t.each_char{|k| n_emb << (k.chr).ord }
+	cifras = enumerate(n_emb)
+else
+	n = []
+	n_emb = (256.times.map{ |i| n[i] = i } ).shuffle    # Cria uma lista de numeros de 0 a 255 e depois embaralha esses numeros (shuffle)
+	cifras = enumerate(n_emb)     
+end
 
 msg_cifrada = []
-mensagem.each_char  { |x|  msg_cifrada << cifras[x] }
-
+mensagem.each_char  { |x|  
+	msg_cifrada << (cifras[(x.ord)][1].to_i).chr
+}
+#puts "Mensagem Cifrada: " + msg_cifrada = msg_cifrada.join('')
 msg_cifrada = msg_cifrada.join('')
-puts "Mensagem Cifrada: " + msg_cifrada
+print msg_cifrada
 
-msg_decifrada = []
-msg_cifrada.each_char { |x| msg_decifrada << cifras[x] }
+msg_decifrada = dec = []	
+msg_cifrada.each_char { |x|
+	cifras.map {|y, z| 
+		if cifras[y][1] == x.ord
+			dec = cifras[y][0]
+		end
+	}
+	msg_decifrada << (dec).chr 
+}
 
-msg_decifrada = msg_decifrada.join('')
-puts "Mensagem Decifrada: " + msg_decifrada
+#puts "Mensagem Decifrada: " +  msg_decifrada.join('')
