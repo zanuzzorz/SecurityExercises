@@ -2,7 +2,7 @@
 mensagem = File.open("#{ARGV[0]}",'rb')
 
 def enumerate(lista_embaralhada)
-	lista_embaralhada.map.with_index {|x, i| [i, x] } # Faz uma associação a lista de numeros embaralhados com numeros de 0 a 255
+	lista_embaralhada.map.with_index {|x, i| [i, x] } # Faz uma associação entre uma lista de numeros embaralhados com numeros de 0 a 255
 end
 
 if ARGV[1]
