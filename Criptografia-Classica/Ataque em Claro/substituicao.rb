@@ -6,4 +6,4 @@ for i in 0..(escuro.size-1)
 	dict = [(claro[i].ord).chr, (escuro[i].ord).chr]
 	chave << dict unless chave.include? dict
 end
-print chave.sort
+p chave.sort
