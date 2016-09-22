@@ -11,8 +11,6 @@ def crypt(mensagem, chave)
 end
 
 def decrypt(mensagem, chave)
-	tamanho = (mensagem.tr('¬', '').size % chave).to_i
-
 	msg_decifrada = Array.new((mensagem.size / chave), '')
 	mensagem = mensagem.scan(/#{'.' * (mensagem.size / chave)}/)  
 
@@ -31,9 +29,10 @@ mensagem = File.open("#{ARGV[0]}",'rb').read
 mensagem = mensagem.tr(' ', '¢').tr("\n", '£')   # Subtitui os espaços em branco e as quebras de linha por simbolos.
 chave = "#{ARGV[1]}".to_i
 
-
 msg_cifrada = crypt(mensagem, chave)
 print ajustar_texto(msg_cifrada)
 
-msg_decifrada = decrypt(msg_cifrada, chave)
-#print ajustar_texto(msg_decifrada)
+if ARGV[2] == 'd'
+	msg_decifrada = decrypt(msg_cifrada, chave)
+	print ajustar_texto(msg_decifrada)
+end
