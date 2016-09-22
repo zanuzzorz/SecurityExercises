@@ -20,18 +20,20 @@ msg_cifrada = []
 mensagem.each_char  { |x|  
 	msg_cifrada << (cifras[(x.ord)][1].to_i).chr
 }
-#puts "Mensagem Cifrada: " + msg_cifrada = msg_cifrada.join('')
 msg_cifrada = msg_cifrada.join('')
 print msg_cifrada
+#puts "Mensagem Cifrada: " + msg_cifrada = msg_cifrada.join('')
 
-msg_decifrada = dec = []	
-msg_cifrada.each_char { |x|
-	cifras.map {|y, z| 
-		if cifras[y][1] == x.ord
-			dec = cifras[y][0]
-		end
+if ARGV[2] == 'd'
+	msg_decifrada = dec = []	
+	msg_cifrada.each_char { |x|
+		cifras.map {|y, z| 
+			if cifras[y][1] == x.ord
+				dec = cifras[y][0]
+			end
+		}
+		msg_decifrada << (dec).chr 
 	}
-	msg_decifrada << (dec).chr 
-}
 
-#puts "Mensagem Decifrada: " +  msg_decifrada.join('')
+	puts "Mensagem Decifrada: " +  msg_decifrada.join('')
+end
