@@ -43,13 +43,42 @@ class Huffman
     text.split("").each {|c| ret += @table[c] if @table.has_key?(c)}
     return ret
   end
+
+  def decode(bit_string)
+    node = @root
+    ret = ''
+    bit_string.split("").each do |c|
+      if c == '1'
+        node = node.right
+      elsif c == '0'
+        node = node.left
+      end
+      
+      if node == nil
+        next
+      elsif node.char != nil
+        ret += node.char
+        node = @root
+      end
+    end
+    return ret
+  end
+  
 end
 
-texto =  ARGV[0] ? File.open("#{ARGV[0]}",'rb').read : "A_CASA_ROSA"
+texto =  ARGV[0] ? File.open("#{ARGV[0]}",'rb').read : "texto_de_exemplo"
 base  =  ARGV[1] ? "#{ARGV[1]}".to_i : 256
 
 n = Huffman.new(texto)
-puts n.table.to_s.gsub(",","\n")
-puts n.encode
-puts f = frequency(texto)
-puts entropy(texto, f, base)
+f = frequency(texto)
+
+puts "Árvore do Texto               = " + n.table.to_s#.gsub(",","\n")
+puts "Frequência do Texto           = " + f.to_s
+puts "Entropia Texto                = " + entropy(texto, f, base).to_s + "\n\n"
+
+f2 = frequency(n.encode)
+puts "Texto Codificado              = " + n.encode
+puts "Frequência Texto Codificado   = " + f2.to_s
+puts "Entropia Texto Codificado     = " + entropy(n.encode, f2, 2).to_s
+
+# puts "\nTexto Decodificado: " + n.decode(n.encode).to_s
