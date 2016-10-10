@@ -1,2 +1,2 @@
 # Entropia
-> ruby huffman.rb <file.input> <base>
+> ruby huffman.rb `<file.input>` `<base>`
