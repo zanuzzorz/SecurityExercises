@@ -1,7 +1,7 @@
 def frequency(text)
 	h = Hash.new
 	text.split("").each {|c| h[c] = text.count(c) if not h.has_key?(c)}
-	return h
+	h =  h.sort_by{|k| k[1]}.reverse
 end
 
 def entropy(text, freq,  base)
