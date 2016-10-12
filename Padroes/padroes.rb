@@ -5,6 +5,7 @@ palavras.each { |palavra|
 	cont = 0
 	padrao = ''
 	padrao_palavra = {}
+
 	palavra.each_char{|c| 
 		if cont == 0
 			padrao_palavra.store(c, cont)
@@ -20,4 +21,5 @@ palavras.each { |palavra|
 	}
 	padrao_palavras.update({palavra => padrao})
 }
+
 puts padrao_palavras
