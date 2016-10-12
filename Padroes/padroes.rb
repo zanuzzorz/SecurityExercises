@@ -1,10 +1,10 @@
 palavras = ARGV[0] ? File.open("#{ARGV[0]}",'rb').read.split : ['bola', 'bala', 'casa', 'rosa', 'faca', 'fofa', 'fofo']
 padrao_palavras = {}
+
 palavras.each { |palavra| 
 	cont = 0
 	padrao = ''
 	padrao_palavra = {}
-
 	palavra.each_char{|c| 
 		if cont == 0
 			padrao_palavra.store(c, cont)
